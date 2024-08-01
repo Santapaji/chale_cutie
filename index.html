@@ -19,20 +19,24 @@
         </div>
     </div>
 
+    <!-- Unmute button -->
+    <div id="unmuteContainer" class="unmute-container">
+        <button class="unmute-button" onclick="unmuteAudio()">🔊 Unmute</button>
+    </div>
+
     <!-- Background audio -->
-    <audio id="bgAudio" autoplay loop>
+    <audio id="bgAudio" autoplay muted loop>
         <source src="bgmusic.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
 
     <script>
         const audio = document.getElementById('bgAudio');
+        const unmuteContainer = document.getElementById('unmuteContainer');
 
-        // Load audio state from localStorage
         window.onload = () => {
             const fromYesPage = localStorage.getItem('fromYesPage');
             if (fromYesPage === 'true') {
-                // Reset audio if returning from yes.html
                 audio.currentTime = 0;
                 localStorage.setItem('fromYesPage', 'false');
             } else {
@@ -41,10 +45,21 @@
                     audio.currentTime = audioTime;
                 }
             }
-            audio.play();
+            audio.play().then(() => {
+                // If autoplay works, unmute the audio
+                audio.muted = false;
+            }).catch(() => {
+                // If autoplay is blocked, show the unmute button
+                unmuteContainer.style.display = 'block';
+            });
         };
 
-        // Save audio time before leaving the page
+        function unmuteAudio() {
+            audio.muted = false;
+            audio.play();
+            unmuteContainer.style.display = 'none'; // Hide the unmute button after unmuting
+        }
+
         window.onbeforeunload = () => {
             localStorage.setItem('audioTime', audio.currentTime);
         };
