@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="./styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Lora:wght@400&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Do You Wanna Go Out With Me?</title>
 </head> 
 <body>
@@ -46,10 +47,8 @@
                 }
             }
             audio.play().then(() => {
-                // If autoplay works, unmute the audio
                 audio.muted = false;
             }).catch(() => {
-                // If autoplay is blocked, show the unmute button
                 unmuteContainer.style.display = 'block';
             });
         };
@@ -57,7 +56,7 @@
         function unmuteAudio() {
             audio.muted = false;
             audio.play();
-            unmuteContainer.style.display = 'none'; // Hide the unmute button after unmuting
+            unmuteContainer.style.display = 'none';
         }
 
         window.onbeforeunload = () => {

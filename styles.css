@@ -25,6 +25,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 40px;
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
 }
 
 .btn {
@@ -49,17 +50,17 @@ body {
 
 .gif_container img {
     border-radius: 15px;
+    max-width: 90%; /* Ensure GIF fits within screen */
+    height: auto;
 }
 
 #noButton {
     position: absolute;
-    margin-left: 150px;
     transition: 0.5s;
 }
 
 #yesButton {
     position: absolute;
-    margin-right: 150px;
 }
 
 .unmute-container {
@@ -69,21 +70,64 @@ body {
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
+    width: 80%; /* Make button more visible on small screens */
 }
 
 .unmute-button {
     background-color: #FF69B4;
     color: white;
-    padding: 15px 32px;
-    font-size: 20px;
+    width: 100%; /* Make button wider on small screens */
+    padding: 15px;
+    font-size: 18px;
     border: none;
     border-radius: 25px;
     cursor: pointer;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease, transform 0.3s ease;
+    text-align: center;
 }
 
 .unmute-button:hover {
     background-color: #FF1493;
-    transform: scale(1.1);
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .header_text {
+        font-size: 36px; /* Smaller header on mobile */
+    }
+
+    .btn {
+        font-size: 16px;
+        padding: 12px 28px;
+    }
+
+    .gif_container img {
+        max-width: 80%;
+    }
+
+    #yesButton, #noButton {
+        margin: 5px; /* Allow for better spacing on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .header_text {
+        font-size: 28px; /* Even smaller header on small mobile */
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 10px 24px;
+    }
+
+    .unmute-container {
+        bottom: 10px;
+        width: 90%;
+    }
+
+    .unmute-button {
+        font-size: 16px;
+        padding: 12px;
+    }
 }
