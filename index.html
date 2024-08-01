@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="./styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Lora:wght@400&display=swap" rel="stylesheet">
+    <title>Do You Wanna Go Out With Me?</title>
+</head> 
+<body>
+    <div class="container">
+        <div>
+            <h1 class="header_text">Do you wanna go out with me?</h1>
+        </div>
+        <div class="gif_container">
+            <img src="https://media.giphy.com/media/iyYWOTq2mInrUEsOVA/giphy.gif?cid=790b7611aadil8b7xye26htebmxg4q94d9fdq1f520wjgys2&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Question GIF">
+        </div>
+        <div class="buttons">
+            <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
+            <button class="btn" id="noButton" onmouseover="moveButton()">No</button>
+        </div>
+    </div>
+
+    <!-- Background audio -->
+    <audio id="bgAudio" autoplay loop>
+        <source src="bgmusic.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        const audio = document.getElementById('bgAudio');
+
+        // Load audio state from localStorage
+        window.onload = () => {
+            const fromYesPage = localStorage.getItem('fromYesPage');
+            if (fromYesPage === 'true') {
+                // Reset audio if returning from yes.html
+                audio.currentTime = 0;
+                localStorage.setItem('fromYesPage', 'false');
+            } else {
+                const audioTime = localStorage.getItem('audioTime');
+                if (audioTime) {
+                    audio.currentTime = audioTime;
+                }
+            }
+            audio.play();
+        };
+
+        // Save audio time before leaving the page
+        window.onbeforeunload = () => {
+            localStorage.setItem('audioTime', audio.currentTime);
+        };
+
+        function nextPage() {
+            window.location.href = "yes.html";
+        }
+
+        function moveButton() {
+            var x = Math.random() * (window.innerWidth - document.getElementById('noButton').offsetWidth) - 85;
+            var y = Math.random() * (window.innerHeight - document.getElementById('noButton').offsetHeight) - 48;
+            document.getElementById('noButton').style.left = `${x}px`;
+            document.getElementById('noButton').style.top = `${y}px`;
+        }
+    </script>
+</body> 
+</html>

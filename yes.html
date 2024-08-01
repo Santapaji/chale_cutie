@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="./yes_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Lora:wght@400&display=swap" rel="stylesheet">
+    <title>Yeeeyyyy!!</title>
+</head> 
+<body>
+    <div class="container">
+        <div>
+            <h1 class="header_text">Yeeeyyyy!!</h1>
+        </div>
+        <div class="gif_container">
+            <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmVwaXYxZDlqdjB1MHRta2NzeTE4eG14ZmJmejZzcTRob2l6OWkyaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JWfWRMAxEPI5EgyWJn/giphy.gif" alt="Celebration GIF">
+        </div>
+    </div>
+
+    <!-- Background audio -->
+    <audio id="bgAudio" autoplay loop>
+        <source src="bgmusic.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        const audio = document.getElementById('bgAudio');
+
+        // Load audio state from localStorage
+        window.onload = () => {
+            const audioTime = localStorage.getItem('audioTime');
+            if (audioTime) {
+                audio.currentTime = audioTime;
+            }
+            audio.play();
+        };
+
+        // Indicate return to the main page
+        window.onbeforeunload = () => {
+            localStorage.setItem('audioTime', audio.currentTime);
+            localStorage.setItem('fromYesPage', 'true');
+        };
+    </script>
+</body> 
+</html>

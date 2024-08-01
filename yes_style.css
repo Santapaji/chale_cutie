@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #E6E6FA; /* Lavender */
+    font-family: 'Lora', serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header_text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 60px;
+    font-weight: bold;
+    color: #d70a0a; /* red */
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.gif_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gif_container img {
+    border-radius: 15px;
+}
